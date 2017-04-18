@@ -25,7 +25,7 @@ public class ServiceCall {
     public static int status_code = 0;
     private Context mContext;
     private String url = "";
-    public static String sortMovie;
+    public static String sortMovie,id;
 
     public ServiceCall(Context context, String url, StringEntityHC4 stringEntity) {
         this.url = url;
@@ -42,7 +42,7 @@ public class ServiceCall {
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestProperty("User", "");
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.connect();
 
@@ -67,6 +67,26 @@ public class ServiceCall {
                 .authority("api.themoviedb.org")
                 .appendPath("3")
                 .appendPath("movie")
+                .appendPath(sortMovie)
+                .appendQueryParameter("api_key",api_key).build();
+
+        URL url = null;
+        try {
+            url = new URL(builder.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
+    public static URL buildMovieUrl(String api_key){
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath(id)
                 .appendPath(sortMovie)
                 .appendQueryParameter("api_key",api_key).build();
 

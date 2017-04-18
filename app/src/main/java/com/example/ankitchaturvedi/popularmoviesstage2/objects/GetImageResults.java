@@ -33,6 +33,9 @@ public class GetImageResults {
     @SerializedName("vote_average")
     public Float vote_average;
 
+    @SerializedName("id")
+    public int id;
+
     @SerializedName("backdrop_path")
     public String backdrop_path;
 }

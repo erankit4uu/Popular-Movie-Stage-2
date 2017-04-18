@@ -7,5 +7,8 @@
     <string name="movie_detail">Movie Detail </string>
     <string name="censer_rating">Censer Rating: Adult </string>
     <string name="details_activity_text">Movie Details </string>
-    <string name="title_name">title</string>
+    <string name="title">title</string>
+    <string name="close">close</string>
+    <string name="trailer">--Trailers--</string>
+    <string name="reviews">--Total Reviews--</string>
 </resources>

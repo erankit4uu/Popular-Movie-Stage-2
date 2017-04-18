@@ -1,6 +1,8 @@
 package com.example.ankitchaturvedi.popularmoviesstage2.Adapter;
 
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -33,8 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
-        MyViewHolder itemViewHolder = new MyViewHolder(view);
-        return itemViewHolder;
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -43,6 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Picasso.with(mcontext)
                 .load(helper.base_url + helper.poster_sizes + mMainGridResponseParser.results.get(position).poster_path)
                 .into(holder.miv_detail);
+
 
         holder.mtv_ratings.setText(String.valueOf(mMainGridResponseParser.results.get(position).vote_average));
 
@@ -56,8 +58,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 in.putExtra("vote_average", mMainGridResponseParser.results.get(position).vote_average);
 //                in.putExtra("adult",mMainGridResponseParser.results.get(position).get);
                 in.putExtra("title", mMainGridResponseParser.results.get(position).title);
-                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mcontext.startActivity(in);
+                in.putExtra("id", mMainGridResponseParser.results.get(position).id);
+                String transitionName = mcontext.getString(R.string.title);
+                ActivityOptions transitionActivityOptions = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation((Activity) mcontext, view, transitionName);
+                }
+                if (transitionActivityOptions != null) {
+                    mcontext.startActivity(in, transitionActivityOptions.toBundle());
+                } else mcontext.startActivity(in);
             }
         });
     }

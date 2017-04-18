@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/card_margin"
         android:background="@color/colorTextDark"
         card_view:cardCornerRadius="@dimen/card_album_radius"
         tools:targetApi="lollipop">
@@ -29,14 +28,13 @@
                 card_view:srcCompat="@mipmap/ic_launcher"
                 card_view:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="0dp"
-                android:layout_marginLeft="@dimen/recycler_margin"
                 card_view:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginRight="@dimen/margin_all"
                 android:layout_marginBottom="5dp"
                 card_view:layout_constraintRight_toRightOf="parent"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="@dimen/recycler_margin"
                 android:layout_marginEnd="@dimen/recycler_margin"
+                android:transitionName="@string/title"
                 card_view:layout_constraintHorizontal_bias="0.0" />
 
             <ImageView
